@@ -33,6 +33,8 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    env:
+      AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -52,20 +54,20 @@ jobs:
           npm run build
 
       - name: Setup AWS SAM CLI
-        if: ${{ secrets.AWS_ROLE_TO_ASSUME != '' }}
+        if: env.AWS_ROLE_TO_ASSUME != ''
         uses: aws-actions/setup-sam@f84ec7d548307efafe33230528756de3c5841a17 # v2
         with:
           use-installer: true
 
       - name: Configure AWS Credentials (OIDC)
-        if: ${{ secrets.AWS_ROLE_TO_ASSUME != '' }}
+        if: env.AWS_ROLE_TO_ASSUME != ''
         uses: aws-actions/configure-aws-credentials@ff717079ee2060e4bcee96c4779b553acc87447c # v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-to-assume: ${{ env.AWS_ROLE_TO_ASSUME }}
           aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
 
       - name: Deploy AWS SAM Stack
-        if: ${{ secrets.AWS_ROLE_TO_ASSUME != '' }}
+        if: env.AWS_ROLE_TO_ASSUME != ''
         run: |
           sam build
           sam deploy \
@@ -81,7 +83,7 @@ jobs:
               AcmCertificateArn="${{ vars.ACM_CERTIFICATE_ARN || secrets.ACM_CERTIFICATE_ARN }}"
 
       - name: Sync Static Assets to S3 & Invalidate CloudFront
-        if: ${{ secrets.AWS_ROLE_TO_ASSUME != '' }}
+        if: env.AWS_ROLE_TO_ASSUME != ''
         run: |
           BUCKET=$(aws cloudformation describe-stacks --stack-name wishboards-app-landing --query "Stacks[0].Outputs[?OutputKey=='WebsiteBucketName'].OutputValue" --output text)
           DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name wishboards-app-landing --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" --output text)
