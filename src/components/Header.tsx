@@ -4,7 +4,7 @@ export const Header: React.FC = () => {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a href="#" className="brand-logo">
+        <a href="/" className="brand-logo">
           <img
             src="/favicon.svg"
             alt="Wishboard"
