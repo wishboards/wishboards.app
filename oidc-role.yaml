@@ -54,6 +54,7 @@ Resources:
               StringLike:
                 token.actions.githubusercontent.com:sub:
                   - !Sub "repo:${GitHubOrg}/${GitHubRepo}:*"
+                  - !Sub "repo:${GitHubOrg}@*/${GitHubRepo}@*:*"
 
       Policies:
         - PolicyName: WishboardsAppDeployerPolicy
