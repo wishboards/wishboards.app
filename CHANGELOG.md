@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.1](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.2.0...wishboards.app-v0.2.1) (2026-10-12)
+
+
+### Bug Fixes
+
+* **cfn:** scope cloudfront iam arns and enable s3 versioning with lifecycle rule ([#5](https://github.com/wishboards/wishboards.app/issues/5)) ([c274d9f](https://github.com/wishboards/wishboards.app/commit/c274d9f5b201fabd5cbbb27f784abae5dc4a2472))
+* **ci:** pin third-party actions to full commit sha hashes ([#4](https://github.com/wishboards/wishboards.app/issues/4)) ([e248fc1](https://github.com/wishboards/wishboards.app/commit/e248fc13dcaeaf6a9bef81749f06b6ad0a99ae1c))
+* **ci:** support github org and repo id format in oidc trust policy ([#9](https://github.com/wishboards/wishboards.app/issues/9)) ([853022c](https://github.com/wishboards/wishboards.app/commit/853022c7fa48e02f4361a489097846c78acd7461))
+* **ci:** use env context instead of secrets in release step conditions ([#6](https://github.com/wishboards/wishboards.app/issues/6)) ([7408172](https://github.com/wishboards/wishboards.app/commit/74081722e0ad48d489fb6ead9d201078c90b8a23))
+* **ci:** use RELEASE_PLEASE_PAT secret and v5 action for release workflow ([#7](https://github.com/wishboards/wishboards.app/issues/7)) ([b13f8a5](https://github.com/wishboards/wishboards.app/commit/b13f8a55215d54841e4c15d5b694276ad4963da0))
+* **quality:** resolve sonarcloud accessibility, security, and pipeline issues ([#3](https://github.com/wishboards/wishboards.app/issues/3)) ([c2ac609](https://github.com/wishboards/wishboards.app/commit/c2ac609247550628398e5fd9c39715773cafe9fd))
+
 ## [0.2.0](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.1.0...wishboards.app-v0.2.0) (2026-10-12)
 
 
