@@ -56,7 +56,7 @@ export const InteractiveSandbox: React.FC = () => {
   const [pinnedNotice, setPinnedNotice] = useState(false);
 
   // Matcher state
-  const [selectedMatcherRole, setSelectedMatcherRole] = useState('Mentee');
+  const [selectedScenario, setSelectedScenario] = useState<'mentee' | 'gm' | 'photo'>('mentee');
 
   const availableRoles = ['Tabletop Gamer', 'Cosplayer', 'Game Master', 'Tech Seeker', 'Mentor'];
 
@@ -119,7 +119,7 @@ export const InteractiveSandbox: React.FC = () => {
               className={`sandbox-tab ${activeTab === 'matcher' ? 'active' : ''}`}
               onClick={() => setActiveTab('matcher')}
             >
-              <span>🔍</span> Attendee: Smart Matching
+              <span>🔍</span> Dynamic Rule Matching
             </button>
             <button
               className={`sandbox-tab ${activeTab === 'organizer' ? 'active' : ''}`}
@@ -286,72 +286,93 @@ export const InteractiveSandbox: React.FC = () => {
 
             {activeTab === 'matcher' && (
               <div>
-                <div style={{ maxWidth: 650, margin: '0 auto 28px', textAlign: 'center' }}>
-                  <p style={{ color: 'var(--text-secondary)', marginBottom: 16 }}>
-                    Wishboard features a dynamic, rule-based matching engine. Complementary roles pair automatically without invasive profiling.
+                <div style={{ maxWidth: 720, margin: '0 auto 28px', textAlign: 'center' }}>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: 14 }}>
+                    Wishboard uses deterministic, profile-driven rules evaluated directly in SQLite. There are no opaque scoring models or synthetic percentage ratings.
                   </p>
-                  <div style={{ display: 'flex', justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}>
-                    <span style={{ alignSelf: 'center', fontSize: '0.88rem', color: 'var(--text-muted)', marginRight: 4 }}>
-                      Simulate Your Role:
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.88rem', color: 'var(--text-muted)' }}>
+                      Test Rule Scenario:
                     </span>
-                    {['Mentee', 'Game Master', 'Photographer'].map((role) => (
-                      <button
-                        key={role}
-                        type="button"
-                        onClick={() => setSelectedMatcherRole(role)}
-                        className={`btn btn-sm ${selectedMatcherRole === role ? 'btn-primary' : 'btn-secondary'}`}
-                      >
-                        {role}
-                      </button>
-                    ))}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedScenario('mentee')}
+                      className={`btn btn-sm ${selectedScenario === 'mentee' ? 'btn-primary' : 'btn-secondary'}`}
+                    >
+                      Cross-Match: Mentee Looking for Mentor
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedScenario('gm')}
+                      className={`btn btn-sm ${selectedScenario === 'gm' ? 'btn-primary' : 'btn-secondary'}`}
+                    >
+                      Attribute Match: #Tabletop Tag
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedScenario('photo')}
+                      className={`btn btn-sm ${selectedScenario === 'photo' ? 'btn-primary' : 'btn-secondary'}`}
+                    >
+                      Cross-Match: Cosplayer ↔ Photographer
+                    </button>
                   </div>
                 </div>
 
                 <div className="corkboard-preview">
                   {cards.map((c) => {
-                    const isComplementary =
-                      (selectedMatcherRole === 'Mentee' && c.role === 'Mentor') ||
-                      (selectedMatcherRole === 'Game Master' && c.topic.includes('TABLETOP')) ||
-                      (selectedMatcherRole === 'Photographer' && c.role === 'Photographer');
+                    let matchRule: string | null = null;
+
+                    if (selectedScenario === 'mentee') {
+                      if (c.role === 'Mentor') {
+                        matchRule = 'Rule: cross_match (Mentoring ↔ Mentee)';
+                      }
+                    } else if (selectedScenario === 'gm') {
+                      if (c.stickers.some((s) => s.includes('Tabletop'))) {
+                        matchRule = 'Rule: attribute_overlap (Sticker: 🎲 Tabletop)';
+                      }
+                    } else if (selectedScenario === 'photo') {
+                      if (c.role === 'Photographer' || c.stickers.some((s) => s.includes('Photo'))) {
+                        matchRule = 'Rule: cross_match (Cosplayer ↔ Photographer)';
+                      }
+                    }
+
+                    const isMatch = matchRule !== null;
 
                     return (
                       <div
                         key={c.id}
                         className="pin-card"
                         style={{
-                          transform: `rotate(${c.tilt}deg) ${isComplementary ? 'scale(1.08)' : 'scale(0.95)'}`,
-                          border: isComplementary ? '2px solid var(--accent-amber)' : '1px solid var(--card-border)',
-                          boxShadow: isComplementary ? '0 12px 28px rgba(245, 158, 11, 0.4)' : '0 4px 12px rgba(0,0,0,0.25)',
-                          opacity: isComplementary ? 1 : 0.45,
-                          zIndex: isComplementary ? 5 : 1,
+                          transform: `rotate(${c.tilt}deg)`,
+                          border: isMatch ? '2px solid var(--accent-amber)' : '1px solid var(--card-border)',
+                          boxShadow: isMatch ? '0 10px 24px rgba(245, 158, 11, 0.35)' : '0 4px 12px rgba(0,0,0,0.2)',
+                          opacity: isMatch ? 1 : 0.45,
+                          zIndex: isMatch ? 5 : 1,
                         }}
                       >
-                        <div className="card-pushpin" style={{ background: isComplementary ? 'radial-gradient(circle, #fbbf24, #d97706)' : undefined }} />
-                        {isComplementary && (
-                          <div style={{
-                            position: 'absolute',
-                            top: -12,
-                            right: 8,
-                            background: 'var(--accent-amber)',
-                            color: '#080d1a',
-                            fontSize: '0.68rem',
-                            fontWeight: 800,
-                            padding: '2px 6px',
-                            borderRadius: 4,
-                            boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
-                          }}>
-                            ★ HIGH MATCH
-                          </div>
-                        )}
+                        <div className="card-pushpin" />
                         <div className="card-topic">{c.topic}</div>
                         <div className="card-body-text">{c.text}</div>
-                        <div className="card-stickers-row">
+                        <div className="card-stickers-row" style={{ marginBottom: isMatch ? 10 : 0 }}>
                           {c.stickers.map((s) => (
                             <span key={s} className="card-sticker-tag">
                               {s}
                             </span>
                           ))}
                         </div>
+                        {isMatch && (
+                          <div style={{
+                            fontSize: '0.74rem',
+                            fontWeight: 600,
+                            color: '#b45309',
+                            background: '#fef3c7',
+                            padding: '4px 8px',
+                            borderRadius: 4,
+                            border: '1px solid #fde68a',
+                          }}>
+                            ✓ {matchRule}
+                          </div>
+                        )}
                       </div>
                     );
                   })}
