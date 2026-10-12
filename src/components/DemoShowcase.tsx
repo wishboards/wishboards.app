@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const DemoShowcase: React.FC = () => {
   return (
@@ -10,7 +10,9 @@ export const DemoShowcase: React.FC = () => {
           </span>
           <h2 className="section-title">Experience Live Demonstrations</h2>
           <p className="section-subtitle">
-            Explore active, real-world Wishboard stacks deployed serverless to AWS. Jump into attendee posting, live corkboards, and poster generation.
+            Explore active, real-world Wishboard stacks deployed serverless to
+            AWS. Jump into attendee posting, live corkboards, and poster
+            generation.
           </p>
         </div>
 
@@ -24,7 +26,10 @@ export const DemoShowcase: React.FC = () => {
               </div>
               <h3 className="demo-title">Lifestyle & Community Meetup</h3>
               <p className="demo-desc">
-                Tailored for gaming conventions, cosplay gatherings, fan meetups, and local community events. Features interest-based identity stickers, casual icebreakers, and room party coordination.
+                Tailored for gaming conventions, cosplay gatherings, fan
+                meetups, and local community events. Features interest-based
+                identity stickers, casual icebreakers, and room party
+                coordination.
               </p>
               <div className="demo-tags">
                 <span className="demo-tag">🎲 Tabletop Gaming</span>
@@ -41,18 +46,30 @@ export const DemoShowcase: React.FC = () => {
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-primary"
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                 >
                   Launch Lifestyle Demo ↗
                 </a>
               </div>
               <div className="demo-links-row">
-                <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Quick Views:</span>
+                <span
+                  style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}
+                >
+                  Quick Views:
+                </span>
                 <div className="demo-sublinks">
-                  <a href="https://demo.wishboards.app/display" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://demo.wishboards.app/display"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     📺 Corkboard (/display)
                   </a>
-                  <a href="https://demo.wishboards.app/poster" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://demo.wishboards.app/poster"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     📄 Print Posters (/poster)
                   </a>
                 </div>
@@ -69,7 +86,10 @@ export const DemoShowcase: React.FC = () => {
               </div>
               <h3 className="demo-title">Professional & Tech Unconference</h3>
               <p className="demo-desc">
-                Engineered for technical conferences, barcamps, and developer summits. Features bidirectional role matchmaking (Mentoring ↔ Seeking Mentor, Hiring ↔ Job Seeking) and Birds-of-a-Feather breakout coordination.
+                Engineered for technical conferences, barcamps, and developer
+                summits. Features bidirectional role matchmaking (Mentoring ↔
+                Seeking Mentor, Hiring ↔ Job Seeking) and Birds-of-a-Feather
+                breakout coordination.
               </p>
               <div className="demo-tags">
                 <span className="demo-tag">🤝 Mentorship Matching</span>
@@ -86,18 +106,30 @@ export const DemoShowcase: React.FC = () => {
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-primary"
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                 >
                   Launch Conference Demo ↗
                 </a>
               </div>
               <div className="demo-links-row">
-                <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Quick Views:</span>
+                <span
+                  style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}
+                >
+                  Quick Views:
+                </span>
                 <div className="demo-sublinks">
-                  <a href="https://conference.wishboards.app/display" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://conference.wishboards.app/display"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     📺 Corkboard (/display)
                   </a>
-                  <a href="https://conference.wishboards.app/poster" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://conference.wishboards.app/poster"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     📄 Print Posters (/poster)
                   </a>
                 </div>

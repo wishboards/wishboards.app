@@ -14,6 +14,7 @@ Wishboard is an open-source, private, and disconnected social connection board e
 This repository contains the marketing, documentation showcase, and interactive simulator web application for `https://wishboards.app` (and `https://www.wishboards.app`).
 
 ### Key Highlights
+
 - **Interactive Product Sandbox:** An engaging, client-side simulator demonstrating attendee wish creation with identity stickers, real-time deterministic rule matching, and kiosk vs. serverless setup comparisons.
 - **Live Demonstrations Showcase:** Direct directory linking to live production demo stacks:
   - [demo.wishboards.app](https://demo.wishboards.app) — Lifestyle & Community Meetup profile.
@@ -89,5 +90,6 @@ Copyright © 2026 Peter 'Happy' Thomas / Wishboard Project. All Rights Reserved.
 The website code, copywriting, design assets, trademarks, branding, and presentation of `wishboards.app` are proprietary and protected under copyright law. They are not licensed for redistribution or unauthorized commercial reproduction.
 
 The underlying software engines and libraries are independently licensed under the MIT License:
+
 - [`wishboards/wishboard`](https://github.com/wishboards/wishboard/blob/main/LICENSE) (MIT)
 - [`wishboards/matching-engine`](https://github.com/wishboards/matching-engine/blob/main/LICENSE) (MIT)

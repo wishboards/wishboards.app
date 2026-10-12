@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: AWS Serverless CloudFront + S3 static hosting for wishboards.app
 
@@ -17,23 +17,23 @@ Parameters:
     Description: WWW custom domain name.
   HostedZoneId:
     Type: String
-    Default: ''
+    Default: ""
     Description: Route 53 Hosted Zone ID for wishboards.app.
   AcmCertificateArn:
     Type: String
-    Default: ''
+    Default: ""
     Description: Existing ACM Certificate ARN in us-east-1 (covering wishboards.app and *.wishboards.app).
 
 Conditions:
-  UseCustomDomain: !Not [!Equals [!Ref DomainName, '']]
-  HasHostedZone: !Not [!Equals [!Ref HostedZoneId, '']]
+  UseCustomDomain: !Not [!Equals [!Ref DomainName, ""]]
+  HasHostedZone: !Not [!Equals [!Ref HostedZoneId, ""]]
 
 Resources:
   # Static Website S3 Bucket (Private, locked to CloudFront OAC)
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub '${ProjectName}-frontend-${AWS::AccountId}'
+      BucketName: !Sub "${ProjectName}-frontend-${AWS::AccountId}"
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
@@ -49,7 +49,7 @@ Resources:
     Type: AWS::CloudFront::OriginAccessControl
     Properties:
       OriginAccessControlConfig:
-        Name: !Sub '${ProjectName}-oac'
+        Name: !Sub "${ProjectName}-oac"
         OriginAccessControlOriginType: s3
         SigningBehavior: always
         SigningProtocol: sigv4
@@ -60,23 +60,23 @@ Resources:
     Properties:
       Bucket: !Ref WebsiteBucket
       PolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Sid: AllowCloudFrontServicePrincipalReadOnly
             Effect: Allow
             Principal:
               Service: cloudfront.amazonaws.com
             Action: s3:GetObject
-            Resource: !Sub '${WebsiteBucket.Arn}/*'
+            Resource: !Sub "${WebsiteBucket.Arn}/*"
             Condition:
               StringEquals:
-                AWS:SourceArn: !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}'
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
 
   # CloudFront Function for Apex Redirect (www -> apex)
   ViewerRequestFunction:
     Type: AWS::CloudFront::Function
     Properties:
-      Name: !Sub '${ProjectName}-viewer-request'
+      Name: !Sub "${ProjectName}-viewer-request"
       AutoPublish: true
       FunctionConfig:
         Comment: Redirect www.wishboards.app to wishboards.app
@@ -105,7 +105,12 @@ Resources:
         Enabled: true
         Comment: CloudFront Distribution for wishboards.app
         DefaultRootObject: index.html
-        Aliases: !If [UseCustomDomain, [!Ref DomainName, !Ref WwwDomainName], !Ref 'AWS::NoValue']
+        Aliases:
+          !If [
+            UseCustomDomain,
+            [!Ref DomainName, !Ref WwwDomainName],
+            !Ref "AWS::NoValue",
+          ]
         ViewerCertificate: !If
           - UseCustomDomain
           - AcmCertificateArn: !Ref AcmCertificateArn
@@ -117,7 +122,7 @@ Resources:
             DomainName: !GetAtt WebsiteBucket.RegionalDomainName
             OriginAccessControlId: !Ref CloudFrontOAC
             S3OriginConfig:
-              OriginAccessIdentity: ''
+              OriginAccessIdentity: ""
         DefaultCacheBehavior:
           TargetOriginId: S3WebsiteOrigin
           ViewerProtocolPolicy: redirect-to-https
@@ -194,5 +199,5 @@ Outputs:
     Value: !GetAtt CloudFrontDistribution.DomainName
     Description: CloudFront domain name
   LandingPageUrl:
-    Value: !Sub 'https://${DomainName}'
+    Value: !Sub "https://${DomainName}"
     Description: Canonical URL of the landing page

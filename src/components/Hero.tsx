@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const Hero: React.FC = () => {
   return (
@@ -6,16 +6,20 @@ export const Hero: React.FC = () => {
       <div className="container">
         <div className="hero-badge-wrap">
           <span className="badge badge-amber">
-            <span>🎪</span> Open Source Connection Board for Conventions & Gatherings
+            <span>🎪</span> Open Source Connection Board for Conventions &
+            Gatherings
           </span>
         </div>
 
         <h1 className="hero-title">
-          The Private, Disconnected Connection Board for <span className="gradient-text-amber">Real-World Events</span>
+          The Private, Disconnected Connection Board for{" "}
+          <span className="gradient-text-amber">Real-World Events</span>
         </h1>
 
         <p className="hero-subtitle">
-          Bring attendees together without app store downloads, personal accounts, or creepy tracking. Runs 100% offline on a Raspberry Pi kiosk or instantly on an AWS serverless stack.
+          Bring attendees together without app store downloads, personal
+          accounts, or creepy tracking. Runs 100% offline on a Raspberry Pi
+          kiosk or instantly on an AWS serverless stack.
         </p>
 
         <div className="hero-actions">
@@ -38,19 +42,27 @@ export const Hero: React.FC = () => {
         <div className="hero-stats">
           <div className="stat-card">
             <div className="stat-value">100% Offline</div>
-            <div className="stat-label">Local Wi-Fi captive portal on Raspberry Pi 4</div>
+            <div className="stat-label">
+              Local Wi-Fi captive portal on Raspberry Pi 4
+            </div>
           </div>
           <div className="stat-card">
             <div className="stat-value">0 Logins</div>
-            <div className="stat-label">Ephemeral privacy with zero attendee accounts</div>
+            <div className="stat-label">
+              Ephemeral privacy with zero attendee accounts
+            </div>
           </div>
           <div className="stat-card">
             <div className="stat-value">Free Tier</div>
-            <div className="stat-label">AWS serverless deployment costs $0/month</div>
+            <div className="stat-label">
+              AWS serverless deployment costs $0/month
+            </div>
           </div>
           <div className="stat-card">
             <div className="stat-value">Dual Output</div>
-            <div className="stat-label">Big-screen corkboard & thermal paper slips</div>
+            <div className="stat-label">
+              Big-screen corkboard & thermal paper slips
+            </div>
           </div>
         </div>
       </div>
