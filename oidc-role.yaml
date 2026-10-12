@@ -105,10 +105,9 @@ Resources:
                   - "arn:aws:s3:::wishboards-app-*"
                   - "arn:aws:s3:::aws-sam-cli-managed-default-*"
 
-              # 3. CloudFront Distribution, OAC & Functions
+              # 3a. CloudFront Resource-Scoped Operations (Distributions, OAC, Functions)
               - Effect: Allow
                 Action:
-                  - cloudfront:CreateDistribution
                   - cloudfront:DeleteDistribution
                   - cloudfront:GetDistribution
                   - cloudfront:UpdateDistribution
@@ -116,16 +115,33 @@ Resources:
                   - cloudfront:GetDistributionConfig
                   - cloudfront:TagResource
                   - cloudfront:UntagResource
-                  - cloudfront:CreateOriginAccessControl
+                Resource:
+                  - !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/*"
+
+              - Effect: Allow
+                Action:
                   - cloudfront:GetOriginAccessControl
                   - cloudfront:DeleteOriginAccessControl
                   - cloudfront:UpdateOriginAccessControl
+                Resource:
+                  - !Sub "arn:aws:cloudfront::${AWS::AccountId}:origin-access-control/*"
+
+              - Effect: Allow
+                Action:
                   - cloudfront:CreateFunction
                   - cloudfront:UpdateFunction
                   - cloudfront:PublishFunction
                   - cloudfront:DescribeFunction
                   - cloudfront:GetFunction
                   - cloudfront:DeleteFunction
+                Resource:
+                  - !Sub "arn:aws:cloudfront::${AWS::AccountId}:function/*"
+
+              # 3b. CloudFront Creation (AWS API requires Resource: "*" as resources do not yet exist)
+              - Effect: Allow
+                Action:
+                  - cloudfront:CreateDistribution
+                  - cloudfront:CreateOriginAccessControl
                 Resource: "*"
 
               # 4. Route 53 DNS RecordSets for wishboards.app
