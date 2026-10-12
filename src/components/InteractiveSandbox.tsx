@@ -9,6 +9,12 @@ interface WishCardData {
   tilt: number;
 }
 
+const getRandomTilt = () => {
+  const buf = new Uint32Array(1);
+  globalThis.crypto.getRandomValues(buf);
+  return (buf[0] / 0xffffffff) * 4 - 2;
+};
+
 const INITIAL_CARDS: WishCardData[] = [
   {
     id: "1",
@@ -103,7 +109,7 @@ export const InteractiveSandbox: React.FC = () => {
       text: wishText,
       stickers: selectedStickers,
       role: activeRole,
-      tilt: Math.random() * 4 - 2,
+      tilt: getRandomTilt(),
     };
 
     setCards((prev) => [newCard, ...prev.slice(0, 4)]);
@@ -137,32 +143,32 @@ export const InteractiveSandbox: React.FC = () => {
               className={`sandbox-tab ${activeTab === "matcher" ? "active" : ""}`}
               onClick={() => setActiveTab("matcher")}
             >
-              <span>🔍</span> Dynamic Rule Matching
+              <span>⚡</span> Dynamic Rule Matching
             </button>
             <button
               className={`sandbox-tab ${activeTab === "organizer" ? "active" : ""}`}
               onClick={() => setActiveTab("organizer")}
             >
-              <span>⚡</span> Organizer: 5-Minute Setup
+              <span>🛠️</span> Organizer: 5-Minute Setup
             </button>
           </div>
 
-          <div className="sandbox-panel">
+          <div className="sandbox-body">
             {activeTab === "writer" && (
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "minmax(320px, 1fr) 1.2fr",
-                  gap: 36,
-                  alignItems: "start",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 32,
                 }}
               >
+                {/* Form */}
                 <form
                   onSubmit={handlePinWish}
                   style={{ display: "flex", flexDirection: "column", gap: 16 }}
                 >
                   <div>
-                    <label
+                    <span
                       style={{
                         fontSize: "0.85rem",
                         fontWeight: 600,
@@ -172,7 +178,7 @@ export const InteractiveSandbox: React.FC = () => {
                       }}
                     >
                       Your Persona / Role
-                    </label>
+                    </span>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                       {availableRoles.map((role) => (
                         <button
@@ -207,6 +213,7 @@ export const InteractiveSandbox: React.FC = () => {
 
                   <div>
                     <label
+                      htmlFor="sandbox-wish-topic"
                       style={{
                         fontSize: "0.85rem",
                         fontWeight: 600,
@@ -218,6 +225,7 @@ export const InteractiveSandbox: React.FC = () => {
                       Your Topic
                     </label>
                     <input
+                      id="sandbox-wish-topic"
                       type="text"
                       value={wishTopic}
                       onChange={(e) => setWishTopic(e.target.value)}
@@ -236,6 +244,7 @@ export const InteractiveSandbox: React.FC = () => {
 
                   <div>
                     <label
+                      htmlFor="sandbox-wish-text"
                       style={{
                         fontSize: "0.85rem",
                         fontWeight: 600,
@@ -247,6 +256,7 @@ export const InteractiveSandbox: React.FC = () => {
                       Wish Description
                     </label>
                     <textarea
+                      id="sandbox-wish-text"
                       value={wishText}
                       onChange={(e) => setWishText(e.target.value)}
                       rows={3}
@@ -265,7 +275,7 @@ export const InteractiveSandbox: React.FC = () => {
                   </div>
 
                   <div>
-                    <label
+                    <span
                       style={{
                         fontSize: "0.85rem",
                         fontWeight: 600,
@@ -275,7 +285,7 @@ export const InteractiveSandbox: React.FC = () => {
                       }}
                     >
                       Attach Identity Stickers
-                    </label>
+                    </span>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                       {availableStickers.map((sticker) => {
                         const isSelected = selectedStickers.includes(sticker);
