@@ -1,7 +1,7 @@
 # wishboards.app
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Deploy to AWS](https://github.com/wishboards/wishboards.app/actions/workflows/deploy.yml/badge.svg)](https://github.com/wishboards/wishboards.app/actions/workflows/deploy.yml)
+[![Deploy to AWS](https://github.com/wishboards/wishboards.app/actions/workflows/release.yml/badge.svg)](https://github.com/wishboards/wishboards.app/actions/workflows/release.yml)
+[![CI](https://github.com/wishboards/wishboards.app/actions/workflows/ci.yml/badge.svg)](https://github.com/wishboards/wishboards.app/actions/workflows/ci.yml)
 
 The official public web presence and live demonstration directory for the **[Wishboard](https://github.com/wishboards/wishboard)** project, hosted at **[wishboards.app](https://wishboards.app)**.
 
@@ -14,7 +14,7 @@ Wishboard is an open-source, private, and disconnected social connection board e
 This repository contains the marketing, documentation showcase, and interactive simulator web application for `https://wishboards.app` (and `https://www.wishboards.app`).
 
 ### Key Highlights
-- **Interactive Product Sandbox:** An engaging, pure-client simulator showing attendee wish creation with identity stickers, real-time complementary role matching, and kiosk vs. serverless setup comparisons.
+- **Interactive Product Sandbox:** An engaging, client-side simulator demonstrating attendee wish creation with identity stickers, real-time deterministic rule matching, and kiosk vs. serverless setup comparisons.
 - **Live Demonstrations Showcase:** Direct directory linking to live production demo stacks:
   - [demo.wishboards.app](https://demo.wishboards.app) — Lifestyle & Community Meetup profile.
   - [conference.wishboards.app](https://conference.wishboards.app) — Professional & Tech Unconference profile.
@@ -68,20 +68,26 @@ sam build
 sam deploy --guided
 ```
 
-### Continuous Deployment (CI/CD)
+### Continuous Deployment (CI/CD) & Automated Releases
 
-Pushing changes to the `main` branch automatically triggers the [Deploy to AWS](.github/workflows/deploy.yml) GitHub Actions workflow, which runs linting, building, SAM stack deployment, asset synchronization, and CloudFront cache invalidation.
+This repository uses **[release-please](https://github.com/googleapis/release-please)** to maintain automated release changelogs and SemVer tagging. Merging a release pull request automatically initiates the AWS SAM deployment, synchronizes production static assets to S3, and invalidates the CloudFront cache.
 
 ---
 
 ## Related Repositories
 
-- **[wishboards/wishboard](https://github.com/wishboards/wishboard):** The core application repository, containing the Raspberry Pi kiosk image, Express backend, React frontend, and unified deployment CLI.
-- **[wishboards/matching-engine](https://github.com/wishboards/matching-engine):** Zero-dependency dynamic identity matchmaking and rules engine.
+- **[wishboards/wishboard](https://github.com/wishboards/wishboard):** The core open-source application repository (MIT License), containing the Raspberry Pi kiosk image, Express backend, React frontend, and unified deployment CLI.
+- **[wishboards/matching-engine](https://github.com/wishboards/matching-engine):** Zero-dependency dynamic identity matchmaking and rules engine (MIT License).
 - **[Documentation](https://wishboards.github.io/wishboard/):** Comprehensive guides for event hosts, kiosk hardware, and serverless architectures.
 
 ---
 
-## License
+## License & Intellectual Property
 
-MIT © [Wishboard Contributors](https://github.com/wishboards/wishboard)
+Copyright © 2026 Peter 'Happy' Thomas / Wishboard Project. All Rights Reserved.
+
+The website code, copywriting, design assets, trademarks, branding, and presentation of `wishboards.app` are proprietary and protected under copyright law. They are not licensed for redistribution or unauthorized commercial reproduction.
+
+The underlying software engines and libraries are independently licensed under the MIT License:
+- [`wishboards/wishboard`](https://github.com/wishboards/wishboard/blob/main/LICENSE) (MIT)
+- [`wishboards/matching-engine`](https://github.com/wishboards/matching-engine/blob/main/LICENSE) (MIT)

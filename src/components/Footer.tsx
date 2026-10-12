@@ -99,7 +99,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="footer-bottom">
-          <div>© {new globalThis.Date().getFullYear()} Wishboard Project. Open source under the MIT License.</div>
+          <div>© {new globalThis.Date().getFullYear()} Wishboard Project. All Rights Reserved.</div>
           <div style={{ display: 'flex', gap: 16 }}>
             <span>Privacy-First</span>
             <span>•</span>
