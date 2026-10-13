@@ -21,7 +21,7 @@ export const DemoShowcase: React.FC = () => {
           <div className="demo-card">
             <div>
               <div className="demo-card-header">
-                <span className="demo-icon">🎪</span>
+                <span className="demo-icon">🎲</span>
                 <span className="badge badge-emerald">Live Stack</span>
               </div>
               <h3 className="demo-title">Lifestyle & Community Meetup</h3>
@@ -33,8 +33,8 @@ export const DemoShowcase: React.FC = () => {
               </p>
               <div className="demo-tags">
                 <span className="demo-tag">🎲 Tabletop Gaming</span>
-                <span className="demo-tag">📸 Cosplay Photoshoots</span>
-                <span className="demo-tag">✨ Social Meetups</span>
+                <span className="demo-tag">🎭 Cosplay Photoshoots</span>
+                <span className="demo-tag">☕ Social Meetups</span>
                 <span className="demo-tag">🍕 Room Parties</span>
               </div>
             </div>
@@ -70,7 +70,14 @@ export const DemoShowcase: React.FC = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    📄 Print Posters (/poster)
+                    🪧 Print Posters (/poster)
+                  </a>
+                  <a
+                    href="https://demo.wishboards.app/account"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    📬 Wishmail (/account)
                   </a>
                 </div>
               </div>
@@ -92,10 +99,10 @@ export const DemoShowcase: React.FC = () => {
                 breakout coordination.
               </p>
               <div className="demo-tags">
-                <span className="demo-tag">🤝 Mentorship Matching</span>
+                <span className="demo-tag">💡 Mentorship Matching</span>
                 <span className="demo-tag">💼 Engineering Hiring</span>
                 <span className="demo-tag">⚡ Lightning Talks</span>
-                <span className="demo-tag">💬 Birds of a Feather</span>
+                <span className="demo-tag">🤝 Birds of a Feather</span>
               </div>
             </div>
 
@@ -130,7 +137,14 @@ export const DemoShowcase: React.FC = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    📄 Print Posters (/poster)
+                    🪧 Print Posters (/poster)
+                  </a>
+                  <a
+                    href="https://conference.wishboards.app/account"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    📬 Wishmail (/account)
                   </a>
                 </div>
               </div>

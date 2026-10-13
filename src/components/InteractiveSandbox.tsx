@@ -342,6 +342,23 @@ export const InteractiveSandbox: React.FC = () => {
                       </span>
                     )}
                   </div>
+                  <div style={{ marginTop: -4 }}>
+                    <span
+                      style={{
+                        fontSize: "0.82rem",
+                        color: "var(--text-muted)",
+                        display: "block",
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      💡{" "}
+                      <em>
+                        On live boards, attendees can post anonymously with 1
+                        tap or use a 3-word passphrase account to manage
+                        multiple wishes and exchange private Wishmail.
+                      </em>
+                    </span>
+                  </div>
                 </form>
 
                 {/* Simulated Corkboard */}
@@ -583,19 +600,19 @@ export const InteractiveSandbox: React.FC = () => {
                     }}
                   >
                     <li>
-                      ✓ <strong>Built-in Wi-Fi AP:</strong> Pi creates a
+                      📡 <strong>Built-in Wi-Fi AP:</strong> Pi creates a
                       dedicated local Wi-Fi network with instant captive portal.
                     </li>
                     <li>
-                      ✓ <strong>Big-Screen TV Display:</strong> Connect via HDMI
-                      for live animated corkboard display.
+                      📺 <strong>Big-Screen TV Display:</strong> Connect via
+                      HDMI for live animated corkboard display.
                     </li>
                     <li>
-                      ✓ <strong>Thermal Printing:</strong> Optionally connect an
-                      Esc/POS printer to print physical wish receipts.
+                      📷 <strong>OpenCV Card Scanner:</strong> Connect any USB
+                      webcam to scan handwritten physical 3x5 index cards.
                     </li>
                     <li>
-                      ✓ <strong>Zero Cloud Dependency:</strong> SQLite database
+                      💾 <strong>Zero Cloud Dependency:</strong> SQLite database
                       resides directly on SD card.
                     </li>
                   </ul>

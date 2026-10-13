@@ -6,7 +6,7 @@ export const Hero: React.FC = () => {
       <div className="container">
         <div className="hero-badge-wrap">
           <span className="badge badge-amber">
-            <span>🎪</span> Open Source Connection Board for Conventions &
+            <span>🎲</span> Open Source Connection Board for Conventions &
             Gatherings
           </span>
         </div>
@@ -17,14 +17,16 @@ export const Hero: React.FC = () => {
         </h1>
 
         <p className="hero-subtitle">
-          Bring attendees together without app store downloads, personal
-          accounts, or creepy tracking. Runs 100% offline on a Raspberry Pi
-          kiosk or instantly on an AWS serverless stack.
+          Bring attendees together without app store downloads or invasive
+          tracking. Attendees can post instantly or use optional local
+          passphrase accounts to manage multiple wishes and receive private
+          Wishmail. Runs 100% offline on a Raspberry Pi kiosk or instantly on an
+          AWS serverless stack.
         </p>
 
         <div className="hero-actions">
           <a href="#demos" className="btn btn-primary">
-            Explore Live Demos →
+            Explore Live Demos ↗
           </a>
           <a href="#sandbox" className="btn btn-secondary">
             ⚡ Try Interactive Sandbox
@@ -47,9 +49,9 @@ export const Hero: React.FC = () => {
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-value">0 Logins</div>
+            <div className="stat-value">Wishmail</div>
             <div className="stat-label">
-              Ephemeral privacy with zero attendee accounts
+              Private peer messaging & multi-wish local accounts
             </div>
           </div>
           <div className="stat-card">
@@ -59,9 +61,9 @@ export const Hero: React.FC = () => {
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-value">Dual Output</div>
+            <div className="stat-value">Card Scanner</div>
             <div className="stat-label">
-              Big-screen corkboard & thermal paper slips
+              OpenCV camera scanning for handwritten index cards
             </div>
           </div>
         </div>

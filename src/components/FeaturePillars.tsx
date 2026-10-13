@@ -4,23 +4,23 @@ export const FeaturePillars: React.FC = () => {
   const features = [
     {
       icon: "🛡️",
-      title: "Radical Attendee Privacy",
-      desc: "No apps to install, no passwords, no email harvesting. Attendees scan a QR code and connect directly. Wishes are ephemeral and automatically pruned when your event concludes.",
+      title: "Privacy-First Local Accounts",
+      desc: "No apps to install or email harvesting. Attendees can post wishes immediately or use lightweight 3-word passphrase accounts to manage multiple active wishes and receive private Wishmail from matches.",
     },
     {
-      icon: "📶",
+      icon: "📡",
       title: "100% Disconnected Operation",
       desc: "Convention centers are infamous for dead zones and expensive venue Wi-Fi. The Raspberry Pi kiosk creates its own local Wi-Fi hotspot with an instant captive portal—no internet required.",
     },
     {
-      icon: "🧠",
+      icon: "⚡",
       title: "Intelligent Rules Engine",
       desc: "Powered by a dynamic matching engine that understands complementary connections (mentors ↔ mentees, hiring ↔ job seekers, game masters ↔ players) and identity sticker taxonomies.",
     },
     {
-      icon: "🖨️",
+      icon: "📷",
       title: "Physical & Digital Crossover",
-      desc: "Bridge paper and screens. Attendees can scan hand-written index cards at the kiosk camera, or print instant physical thermal slips for trade sessions and tabletop signups.",
+      desc: "Bridge paper index cards and live screens. Attendees can scan handwritten 3x5 cards at the kiosk camera using computer vision (OpenCV.js), or type wishes directly from their phone.",
     },
     {
       icon: "📺",
@@ -28,19 +28,19 @@ export const FeaturePillars: React.FC = () => {
       desc: "High-contrast split-screen corkboard designed for 1080p and 4K displays. Real-time organic card layout with permanent Wi-Fi onboarding instructions and dynamic font scaling.",
     },
     {
-      icon: "💸",
+      icon: "💰",
       title: "Zero Ongoing Costs",
       desc: "Host locally for the cost of a Raspberry Pi, or deploy serverless to AWS completely within the Always Free Tier (Lambda, API Gateway, CloudFront, and hosted Turso libSQL).",
     },
     {
-      icon: "⚙️",
+      icon: "🎛️",
       title: "Profile-Driven Configuration",
       desc: "Switch event contexts instantly without touching code. Profiles define custom stickers, categories, rules, and seed wishes in simple, version-controlled YAML files.",
     },
     {
-      icon: "💻",
+      icon: "✨",
       title: "100% Open Source & Auditable",
-      desc: "MIT-licensed with zero proprietary tracking SDKs or analytics trackers. Pair programming and fork-friendly tooling with automated quality gates and SonarQube verification.",
+      desc: "MIT-licensed with zero proprietary SDKs or third-party analytics trackers. Pair programming and fork-friendly tooling with automated quality gates and SonarQube verification.",
     },
   ];
 

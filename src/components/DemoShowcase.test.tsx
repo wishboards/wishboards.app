@@ -28,5 +28,15 @@ describe("DemoShowcase", () => {
       "href",
       "https://conference.wishboards.app/display",
     );
+
+    const wishmailLinks = screen.getAllByText(/Wishmail \(\/account\)/i);
+    expect(wishmailLinks[0].closest("a")).toHaveAttribute(
+      "href",
+      "https://demo.wishboards.app/account",
+    );
+    expect(wishmailLinks[1].closest("a")).toHaveAttribute(
+      "href",
+      "https://conference.wishboards.app/account",
+    );
   });
 });
