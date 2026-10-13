@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.2.1...wishboards.app-v0.3.0) (2026-10-13)
+
+
+### Features
+
+* highlight local accounts and wishmail, replace thermal printer mentions with opencv card scanner ([#21](https://github.com/wishboards/wishboards.app/issues/21)) ([029c5f7](https://github.com/wishboards/wishboards.app/commit/029c5f70a102eb4a6888874f7b3c8bd732f6e82c))
+
 ## [0.2.1](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.2.0...wishboards.app-v0.2.1) (2026-10-12)
 
 
