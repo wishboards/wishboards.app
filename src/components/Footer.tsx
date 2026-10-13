@@ -78,6 +78,15 @@ export const Footer: React.FC = () => {
                   Wi-Fi Sign Generator (/poster) ↗
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://demo.wishboards.app/account"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Account & Wishmail (/account) ↗
+                </a>
+              </li>
             </ul>
           </div>
 
