@@ -4,10 +4,11 @@ export const Header: React.FC = () => {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a href="/" className="brand-logo">
+        <a href="/" className="brand-logo" aria-label="Wishboard Home">
           <img
             src="/favicon.svg"
-            alt="Wishboard"
+            alt=""
+            aria-hidden="true"
             className="brand-icon"
             width="34"
             height="34"
@@ -16,7 +17,7 @@ export const Header: React.FC = () => {
           <span className="gradient-text">Wishboard</span>
         </a>
 
-        <nav>
+        <nav aria-label="Main Navigation">
           <ul className="nav-links">
             <li>
               <a href="#sandbox" className="nav-link">
@@ -58,7 +59,7 @@ export const Header: React.FC = () => {
             rel="noreferrer"
             className="btn btn-secondary btn-sm"
           >
-            ★ GitHub
+            ⭐ GitHub
           </a>
           <a href="#demos" className="btn btn-primary btn-sm">
             Explore Demos

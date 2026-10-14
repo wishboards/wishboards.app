@@ -10,8 +10,11 @@ import { Footer } from "./components/Footer";
 export const App: React.FC = () => {
   return (
     <div className="site-wrapper">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <InteractiveSandbox />
         <DemoShowcase />

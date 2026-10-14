@@ -132,20 +132,42 @@ export const InteractiveSandbox: React.FC = () => {
         </div>
 
         <div className="sandbox-container">
-          <div className="sandbox-tabs">
+          <div
+            className="sandbox-tabs"
+            role="tablist"
+            aria-label="Interactive Demo Modes"
+          >
             <button
+              type="button"
+              id="tab-writer"
+              role="tab"
+              aria-selected={activeTab === "writer"}
+              aria-controls="tabpanel-writer"
+              tabIndex={activeTab === "writer" ? 0 : -1}
               className={`sandbox-tab ${activeTab === "writer" ? "active" : ""}`}
               onClick={() => setActiveTab("writer")}
             >
               <span>✍️</span> Attendee: Post a Wish
             </button>
             <button
+              type="button"
+              id="tab-matcher"
+              role="tab"
+              aria-selected={activeTab === "matcher"}
+              aria-controls="tabpanel-matcher"
+              tabIndex={activeTab === "matcher" ? 0 : -1}
               className={`sandbox-tab ${activeTab === "matcher" ? "active" : ""}`}
               onClick={() => setActiveTab("matcher")}
             >
               <span>⚡</span> Dynamic Rule Matching
             </button>
             <button
+              type="button"
+              id="tab-organizer"
+              role="tab"
+              aria-selected={activeTab === "organizer"}
+              aria-controls="tabpanel-organizer"
+              tabIndex={activeTab === "organizer" ? 0 : -1}
               className={`sandbox-tab ${activeTab === "organizer" ? "active" : ""}`}
               onClick={() => setActiveTab("organizer")}
             >
@@ -156,6 +178,10 @@ export const InteractiveSandbox: React.FC = () => {
           <div className="sandbox-body">
             {activeTab === "writer" && (
               <div
+                id="tabpanel-writer"
+                role="tabpanel"
+                aria-labelledby="tab-writer"
+                tabIndex={0}
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
@@ -169,6 +195,7 @@ export const InteractiveSandbox: React.FC = () => {
                 >
                   <div>
                     <span
+                      id="persona-role-label"
                       style={{
                         fontSize: "0.85rem",
                         fontWeight: 600,
@@ -179,11 +206,16 @@ export const InteractiveSandbox: React.FC = () => {
                     >
                       Your Persona / Role
                     </span>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                    <div
+                      role="group"
+                      aria-labelledby="persona-role-label"
+                      style={{ display: "flex", flexWrap: "wrap", gap: 6 }}
+                    >
                       {availableRoles.map((role) => (
                         <button
                           type="button"
                           key={role}
+                          aria-pressed={activeRole === role}
                           onClick={() => setActiveRole(role)}
                           style={{
                             padding: "4px 10px",
@@ -418,7 +450,12 @@ export const InteractiveSandbox: React.FC = () => {
             )}
 
             {activeTab === "matcher" && (
-              <div>
+              <div
+                id="tabpanel-matcher"
+                role="tabpanel"
+                aria-labelledby="tab-matcher"
+                tabIndex={0}
+              >
                 <div
                   style={{
                     maxWidth: 720,
