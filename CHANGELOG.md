@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.3.0...wishboards.app-v0.4.0) (2026-10-14)
+
+
+### Features
+
+* **a11y:** validate WCAG 2.1 AA accessibility and add automated axe-core testing ([#25](https://github.com/wishboards/wishboards.app/issues/25)) ([147952f](https://github.com/wishboards/wishboards.app/commit/147952fa5ea0f2e626ff0a931ca85322dc20acde))
+
 ## [0.3.0](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.2.1...wishboards.app-v0.3.0) (2026-10-13)
 
 
