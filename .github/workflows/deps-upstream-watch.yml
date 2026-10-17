@@ -1,0 +1,58 @@
+name: Watch upstream peers (TS 7)
+
+# We pin typescript to ~6.0.3 (typescript-eslint peers TS <6.1.0).
+# This weekly job checks whether that upstream blocker has resolved and comments
+# on the tracking issue (#29) once.
+
+on:
+  schedule:
+    - cron: "17 13 * * 1" # weekly, Mondays 13:17 UTC
+  workflow_dispatch: # allow a manual check
+
+permissions:
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check whether upstream peers unblock our pins
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail
+
+          # Does <version> satisfy <pkg>@latest's peer range for <peer-key>?
+          # Echoes "yes|<range>", "no|<range>", or "unknown".
+          satisfies() {
+            local pkg="$1" key="$2" version="$3" range
+            range=$(npm view "$pkg@latest" "peerDependencies.$key" 2>/dev/null || true)
+            if [ -z "$range" ]; then echo "unknown"; return; fi
+            if npx --yes semver -r "$range" "$version" >/dev/null 2>&1; then
+              echo "yes|$range"
+            else
+              echo "no|$range"
+            fi
+          }
+
+          # Comment on the tracking issue once per condition (marker-guarded).
+          notify() {
+            local issue="$1" marker="$2" body="$3"
+            if gh issue view "$issue" --repo "$REPO" --json comments \
+                 --jq '.comments[].body' 2>/dev/null | grep -qF "$marker"; then
+              echo "Already notified on #$issue for $marker."
+              return
+            fi
+            printf '%s\n%b\n\n_Auto-detected by the weekly upstream-peer watcher._' \
+              "$marker" "$body" | gh issue comment "$issue" --repo "$REPO" --body-file -
+          }
+
+          tse=$(satisfies typescript-eslint typescript 7.0.0)
+          echo "typescript-eslint vs typescript@7 -> $tse"
+          case "$tse" in
+            yes*) notify '29' '<!-- watch:typescript-eslint-ts7 -->' \
+              "✅ **typescript-eslint** now allows \`typescript@7\` (peer: \`${tse#yes|}\`). The TypeScript 7 bump (#29) is unblocked." ;;
+          esac
+
+          echo "Done."
