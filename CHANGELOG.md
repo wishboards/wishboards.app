@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.4.0...wishboards.app-v0.5.0) (2026-10-31)
+
+
+### Features
+
+* **deps:** package dependency updates for deployment ([c22c9f3](https://github.com/wishboards/wishboards.app/commit/c22c9f393bc5da280621a8b086ab8739bdee7459))
+
 ## [0.4.0](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.3.0...wishboards.app-v0.4.0) (2026-10-14)
 
 
