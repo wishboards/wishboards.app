@@ -4,6 +4,6 @@ The website code, copywriting, design assets, trademarks, branding, and presenta
 
 No part of this website or its branding may be reproduced, distributed, mirrored, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the copyright holder.
 
-For open-source core software and rules engines, please see:
-- https://github.com/wishboards/wishboard (MIT License)
-- https://github.com/wishboards/matching-engine (MIT License)
+The core Wishboard software and rules engine are separate projects, licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0):
+- https://github.com/wishboards/wishboard (CC BY-NC 4.0)
+- https://github.com/wishboards/matching-engine (CC BY-NC 4.0)
