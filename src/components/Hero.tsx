@@ -45,7 +45,7 @@ export const Hero: React.FC = () => {
           <div className="stat-card">
             <div className="stat-value">100% Offline</div>
             <div className="stat-label">
-              Local Wi-Fi captive portal on Raspberry Pi 4
+              Local Wi-Fi captive portal on Raspberry Pi
             </div>
           </div>
           <div className="stat-card">
