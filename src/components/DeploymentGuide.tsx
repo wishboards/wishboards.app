@@ -19,7 +19,7 @@ export const DeploymentGuide: React.FC = () => {
           {/* Path 1: Hardware Kiosk */}
           <div className="deploy-box">
             <h3 className="deploy-box-title">
-              <span>🍓</span> Raspberry Pi 4 Kiosk
+              <span>🍓</span> Raspberry Pi Kiosk
             </h3>
             <p style={{ color: "var(--text-secondary)", fontSize: "0.94rem" }}>
               The gold standard for physical conventions. No cloud fees, zero
