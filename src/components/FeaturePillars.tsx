@@ -15,7 +15,7 @@ export const FeaturePillars: React.FC = () => {
     {
       icon: "⚡",
       title: "Intelligent Rules Engine",
-      desc: "Powered by a dynamic matching engine that understands complementary connections (mentors ↔ mentees, hiring ↔ job seekers, game masters ↔ players) and identity sticker taxonomies.",
+      desc: "Powered by a deterministic matching engine that understands complementary connections (mentors ↔ mentees, hiring ↔ job seekers, game masters ↔ players) and identity sticker taxonomies—with optional, opt-in AI tag suggestions and semantic search (disabled by default) that never auto-mutate wishes.",
     },
     {
       icon: "📷",
@@ -35,7 +35,7 @@ export const FeaturePillars: React.FC = () => {
     {
       icon: "🎛️",
       title: "Profile-Driven Configuration",
-      desc: "Switch event contexts instantly without touching code. Profiles define custom stickers, categories, rules, and seed wishes in simple, version-controlled YAML files.",
+      desc: "Switch event contexts instantly without touching code. Profiles define custom stickers, categories, rules, and seed wishes in version-controlled YAML, paired with 4 built-in theme presets (including WCAG AAA High Contrast) and live host branding.",
     },
     {
       icon: "✨",

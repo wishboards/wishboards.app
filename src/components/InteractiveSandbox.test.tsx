@@ -50,6 +50,28 @@ describe("InteractiveSandbox", () => {
     ).toBeGreaterThanOrEqual(1);
   });
 
+  it("supports ADR 0011 tactile paper tints, pushpin colors, and links to Storybook", () => {
+    const { container } = render(<InteractiveSandbox />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Rose" }));
+    fireEvent.click(screen.getByRole("button", { name: "Sapphire" }));
+    fireEvent.change(screen.getByPlaceholderText(/BOARD GAMES/i), {
+      target: { value: "CUSTOM SWATCH" },
+    });
+    fireEvent.click(screen.getByText(/Pin to Corkboard/i));
+
+    const pinnedCard = container.querySelector(
+      '.pin-card[data-card-paper="rose"][data-card-pin="sapphire"]',
+    );
+    expect(pinnedCard).toBeInTheDocument();
+
+    const storybookLink = screen.getByText(/Browse Storybook Catalog/i);
+    expect(storybookLink.closest("a")).toHaveAttribute(
+      "href",
+      "https://wishboards.github.io/wishboard/storybook/",
+    );
+  });
+
   it("faithfully demonstrates dynamic rule types without hallucinated scores", () => {
     render(<InteractiveSandbox />);
 

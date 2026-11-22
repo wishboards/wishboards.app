@@ -398,8 +398,116 @@ h4 {
   background: rgba(245, 158, 11, 0.04);
 }
 
+/* Tactile 3x5 Card Paper Swatches (ADR 0011 / Design 0003) */
+[data-card-paper="ivory"] {
+  --wb-card-paper-bg: #fdfbf7;
+  --wb-card-ink: #1e293b;
+}
+[data-card-paper="canary"] {
+  --wb-card-paper-bg: #fef9c3;
+  --wb-card-ink: #1e293b;
+}
+[data-card-paper="rose"] {
+  --wb-card-paper-bg: #ffe4e6;
+  --wb-card-ink: #1e293b;
+}
+[data-card-paper="sky"] {
+  --wb-card-paper-bg: #e0f2fe;
+  --wb-card-ink: #1e293b;
+}
+[data-card-paper="sage"] {
+  --wb-card-paper-bg: #dcfce7;
+  --wb-card-ink: #1e293b;
+}
+
+/* Tactile 3x5 Card Pushpin Swatches (ADR 0011 / Design 0003) */
+[data-card-pin="ruby"] {
+  --wb-pin-color: #ef4444;
+  --wb-pin-shadow: #b91c1c;
+}
+[data-card-pin="amber"] {
+  --wb-pin-color: #f59e0b;
+  --wb-pin-shadow: #b45309;
+}
+[data-card-pin="emerald"] {
+  --wb-pin-color: #10b981;
+  --wb-pin-shadow: #047857;
+}
+[data-card-pin="sapphire"] {
+  --wb-pin-color: #3b82f6;
+  --wb-pin-shadow: #1d4ed8;
+}
+[data-card-pin="violet"] {
+  --wb-pin-color: #8b5cf6;
+  --wb-pin-shadow: #6d28d9;
+}
+
+.sandbox-body {
+  padding: 36px;
+}
+
 .sandbox-panel {
   padding: 36px;
+}
+
+.swatch-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.swatch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.swatch-btn.active {
+  border-color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.16);
+  color: var(--accent-amber-light);
+  font-weight: 600;
+}
+
+.swatch-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 23, 42, 0.35);
+  flex-shrink: 0;
+}
+
+.sandbox-storybook-note {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.sandbox-storybook-link {
+  color: var(--accent-amber-light);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sandbox-storybook-link:hover {
+  text-decoration: underline;
 }
 
 /* Simulated Corkboard */
@@ -419,8 +527,8 @@ h4 {
 }
 
 .pin-card {
-  background: var(--card-paper);
-  color: var(--card-text);
+  background: var(--wb-card-paper-bg, var(--card-paper));
+  color: var(--wb-card-ink, var(--card-text));
   border: 1px solid var(--card-border);
   border-radius: 4px;
   padding: 18px 20px;
@@ -444,7 +552,11 @@ h4 {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #f87171, #dc2626);
+  background: radial-gradient(
+    circle at 35% 35%,
+    var(--wb-pin-color, #ef4444),
+    var(--wb-pin-shadow, #b91c1c)
+  );
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
@@ -488,6 +600,61 @@ h4 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
+}
+
+.demos-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.demo-card-secondary {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.demo-card-secondary:hover {
+  border-color: rgba(245, 158, 11, 0.35);
+  transform: translateY(-2px);
+}
+
+.demo-card-secondary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.demo-card-secondary-title {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.demo-card-secondary-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.demo-card-secondary-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .demo-card {
@@ -757,6 +924,7 @@ h4 {
     grid-template-columns: repeat(2, 1fr);
   }
   .demos-grid,
+  .demos-secondary-grid,
   .deploy-grid {
     grid-template-columns: 1fr;
   }
@@ -775,6 +943,7 @@ h4 {
   .sandbox-tabs {
     flex-direction: column;
   }
+  .sandbox-body,
   .sandbox-panel {
     padding: 20px;
   }
