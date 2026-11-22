@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.5.0...wishboards.app-v0.6.0) (2026-11-22)
+
+
+### Features
+
+* align sandbox with Storybook swatches, add AI comparison demo, and fix doc links ([#41](https://github.com/wishboards/wishboards.app/issues/41)) ([faddff3](https://github.com/wishboards/wishboards.app/commit/faddff392c8c807a23d49f684a04a19792fca2dc))
+
 ## [0.5.0](https://github.com/wishboards/wishboards.app/compare/wishboards.app-v0.4.0...wishboards.app-v0.5.0) (2026-10-31)
 
 
