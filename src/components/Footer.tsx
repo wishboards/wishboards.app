@@ -62,6 +62,24 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
+                  href="https://ai.wishboards.app"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Lifestyle Demo (Optional AI) ↗
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wishboards.github.io/wishboard/storybook/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  UI Component Catalog (Storybook) ↗
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://demo.wishboards.app/display"
                   target="_blank"
                   rel="noreferrer"
@@ -104,7 +122,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="https://wishboards.github.io/wishboard/kiosk/"
+                  href="https://wishboards.github.io/wishboard/deployment-guide/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -113,7 +131,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="https://wishboards.github.io/wishboard/serverless/"
+                  href="https://wishboards.github.io/wishboard/serverless-deployment/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -127,6 +145,24 @@ export const Footer: React.FC = () => {
                   rel="noreferrer"
                 >
                   Dynamic Matchmaking Rules ↗
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wishboards.github.io/wishboard/ai-features/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Optional AI & Semantic Search ↗
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wishboards.github.io/wishboard/component-catalog/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  UI Component Catalog Guide ↗
                 </a>
               </li>
             </ul>

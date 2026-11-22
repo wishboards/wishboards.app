@@ -30,7 +30,7 @@ export const DeploymentGuide: React.FC = () => {
               <li className="deploy-step-item">
                 <span className="step-num">1</span>
                 <div>
-                  <strong>Flash the Raspberry Pi Image</strong>
+                  <strong>Deploy with the Kiosk CLI</strong>
                   <p
                     style={{
                       color: "var(--text-secondary)",
@@ -38,9 +38,16 @@ export const DeploymentGuide: React.FC = () => {
                       marginTop: 4,
                     }}
                   >
-                    Write the pre-configured Wishboard Raspberry Pi OS image to
-                    a micro-SD card using Raspberry Pi Imager.
+                    Start with Raspberry Pi OS (Debian 13 / Trixie) and run the
+                    orchestrator from your machine to configure Rootless Docker
+                    and the kiosk (add{" "}
+                    <code style={{ color: "#fbbf24" }}>--enable-ai</code> for
+                    offline local tag heuristics):
                   </p>
+                  <div className="code-snippet">
+                    npx wishboard kiosk deploy --host raspberrypi.local --mode
+                    prod --domain wishboard.example.com
+                  </div>
                 </div>
               </li>
 
@@ -83,7 +90,7 @@ export const DeploymentGuide: React.FC = () => {
 
             <div style={{ marginTop: 24 }}>
               <a
-                href="https://wishboards.github.io/wishboard/kiosk/"
+                href="https://wishboards.github.io/wishboard/deployment-guide/"
                 target="_blank"
                 rel="noreferrer"
                 className="btn btn-secondary btn-sm"
@@ -137,7 +144,7 @@ export const DeploymentGuide: React.FC = () => {
                     Run the automated serverless deploy command:
                   </p>
                   <div className="code-snippet">
-                    npx wishboard serverless deploy --profile professional
+                    npx wishboard serverless deploy --event-profile professional
                   </div>
                 </div>
               </li>
@@ -164,7 +171,7 @@ export const DeploymentGuide: React.FC = () => {
 
             <div style={{ marginTop: 24 }}>
               <a
-                href="https://wishboards.github.io/wishboard/serverless/"
+                href="https://wishboards.github.io/wishboard/serverless-deployment/"
                 target="_blank"
                 rel="noreferrer"
                 className="btn btn-secondary btn-sm"

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+type CardPaperColor = "ivory" | "canary" | "rose" | "sky" | "sage";
+type CardPinColor = "ruby" | "amber" | "emerald" | "sapphire" | "violet";
+
 interface WishCardData {
   id: string;
   topic: string;
@@ -7,7 +10,25 @@ interface WishCardData {
   stickers: string[];
   role: string;
   tilt: number;
+  paperColor: CardPaperColor;
+  pinColor: CardPinColor;
 }
+
+const PAPER_SWATCHES: { id: CardPaperColor; label: string; hex: string }[] = [
+  { id: "ivory", label: "Ivory", hex: "#fdfbf7" },
+  { id: "canary", label: "Canary", hex: "#fef9c3" },
+  { id: "rose", label: "Rose", hex: "#ffe4e6" },
+  { id: "sky", label: "Sky", hex: "#e0f2fe" },
+  { id: "sage", label: "Sage", hex: "#dcfce7" },
+];
+
+const PIN_SWATCHES: { id: CardPinColor; label: string; hex: string }[] = [
+  { id: "ruby", label: "Ruby", hex: "#ef4444" },
+  { id: "amber", label: "Amber", hex: "#f59e0b" },
+  { id: "emerald", label: "Emerald", hex: "#10b981" },
+  { id: "sapphire", label: "Sapphire", hex: "#3b82f6" },
+  { id: "violet", label: "Violet", hex: "#8b5cf6" },
+];
 
 const getRandomTilt = () => {
   const buf = new Uint32Array(1);
@@ -23,6 +44,8 @@ const INITIAL_CARDS: WishCardData[] = [
     stickers: ["🎲 Tabletop", "🌙 Horror"],
     role: "Game Master",
     tilt: -2.5,
+    paperColor: "ivory",
+    pinColor: "ruby",
   },
   {
     id: "2",
@@ -31,6 +54,8 @@ const INITIAL_CARDS: WishCardData[] = [
     stickers: ["📸 Photo", "🤖 Cyberpunk"],
     role: "Photographer",
     tilt: 1.8,
+    paperColor: "rose",
+    pinColor: "violet",
   },
   {
     id: "3",
@@ -39,6 +64,8 @@ const INITIAL_CARDS: WishCardData[] = [
     stickers: ["💼 Systems", "🦀 Rust"],
     role: "Mentor",
     tilt: -1.2,
+    paperColor: "sky",
+    pinColor: "sapphire",
   },
   {
     id: "4",
@@ -47,6 +74,8 @@ const INITIAL_CARDS: WishCardData[] = [
     stickers: ["💻 Frontend", "🌱 Mentee"],
     role: "Mentee",
     tilt: 2.2,
+    paperColor: "sage",
+    pinColor: "emerald",
   },
 ];
 
@@ -65,6 +94,8 @@ export const InteractiveSandbox: React.FC = () => {
     "🦊 Root",
   ]);
   const [activeRole, setActiveRole] = useState("Tabletop Gamer");
+  const [selectedPaper, setSelectedPaper] = useState<CardPaperColor>("canary");
+  const [selectedPin, setSelectedPin] = useState<CardPinColor>("amber");
   const [cards, setCards] = useState<WishCardData[]>(INITIAL_CARDS);
   const [pinnedNotice, setPinnedNotice] = useState(false);
 
@@ -110,6 +141,8 @@ export const InteractiveSandbox: React.FC = () => {
       stickers: selectedStickers,
       role: activeRole,
       tilt: getRandomTilt(),
+      paperColor: selectedPaper,
+      pinColor: selectedPin,
     };
 
     setCards((prev) => [newCard, ...prev.slice(0, 4)]);
@@ -308,6 +341,80 @@ export const InteractiveSandbox: React.FC = () => {
 
                   <div>
                     <span
+                      id="card-paper-label"
+                      style={{
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        color: "var(--text-secondary)",
+                        display: "block",
+                        marginBottom: 8,
+                      }}
+                    >
+                      3x5 Index Card Paper Tint
+                    </span>
+                    <div
+                      role="group"
+                      aria-labelledby="card-paper-label"
+                      className="swatch-row"
+                    >
+                      {PAPER_SWATCHES.map((swatch) => (
+                        <button
+                          type="button"
+                          key={swatch.id}
+                          aria-pressed={selectedPaper === swatch.id}
+                          onClick={() => setSelectedPaper(swatch.id)}
+                          className={`swatch-btn ${selectedPaper === swatch.id ? "active" : ""}`}
+                        >
+                          <span
+                            className="swatch-dot"
+                            style={{ backgroundColor: swatch.hex }}
+                            aria-hidden="true"
+                          />
+                          {swatch.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <span
+                      id="card-pin-label"
+                      style={{
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        color: "var(--text-secondary)",
+                        display: "block",
+                        marginBottom: 8,
+                      }}
+                    >
+                      Pushpin Color
+                    </span>
+                    <div
+                      role="group"
+                      aria-labelledby="card-pin-label"
+                      className="swatch-row"
+                    >
+                      {PIN_SWATCHES.map((swatch) => (
+                        <button
+                          type="button"
+                          key={swatch.id}
+                          aria-pressed={selectedPin === swatch.id}
+                          onClick={() => setSelectedPin(swatch.id)}
+                          className={`swatch-btn ${selectedPin === swatch.id ? "active" : ""}`}
+                        >
+                          <span
+                            className="swatch-dot"
+                            style={{ backgroundColor: swatch.hex }}
+                            aria-hidden="true"
+                          />
+                          {swatch.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <span
                       style={{
                         fontSize: "0.85rem",
                         fontWeight: 600,
@@ -430,6 +537,8 @@ export const InteractiveSandbox: React.FC = () => {
                       <div
                         key={c.id}
                         className="pin-card"
+                        data-card-paper={c.paperColor}
+                        data-card-pin={c.pinColor}
                         style={{ transform: `rotate(${c.tilt}deg)` }}
                       >
                         <div className="card-pushpin" />
@@ -444,6 +553,20 @@ export const InteractiveSandbox: React.FC = () => {
                         </div>
                       </div>
                     ))}
+                  </div>
+                  <div className="sandbox-storybook-note">
+                    <span>
+                      Want to inspect the real production components across all
+                      4 theme presets (including WCAG AAA High Contrast)?
+                    </span>
+                    <a
+                      href="https://wishboards.github.io/wishboard/storybook/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="sandbox-storybook-link"
+                    >
+                      Browse Storybook Catalog ↗
+                    </a>
                   </div>
                 </div>
               </div>
@@ -540,6 +663,8 @@ export const InteractiveSandbox: React.FC = () => {
                       <div
                         key={c.id}
                         className="pin-card"
+                        data-card-paper={c.paperColor}
+                        data-card-pin={c.pinColor}
                         style={{
                           transform: `rotate(${c.tilt}deg)`,
                           border: isMatch
@@ -589,6 +714,10 @@ export const InteractiveSandbox: React.FC = () => {
 
             {activeTab === "organizer" && (
               <div
+                id="tabpanel-organizer"
+                role="tabpanel"
+                aria-labelledby="tab-organizer"
+                tabIndex={0}
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
@@ -649,8 +778,10 @@ export const InteractiveSandbox: React.FC = () => {
                       webcam to scan handwritten physical 3x5 index cards.
                     </li>
                     <li>
-                      💾 <strong>Zero Cloud Dependency:</strong> SQLite database
-                      resides directly on SD card.
+                      💾 <strong>Zero Cloud Dependency:</strong> libSQL/SQLite
+                      database resides directly on SD card, with optional
+                      offline local AI heuristics (<code>--enable-ai</code>,
+                      disabled by default).
                     </li>
                   </ul>
                 </div>
@@ -709,8 +840,9 @@ export const InteractiveSandbox: React.FC = () => {
                       to custom subdomains with automatic TLS.
                     </li>
                     <li>
-                      ✓ <strong>Ephemeral Auto-Teardown:</strong> Simple CLI
-                      cleanup command when the convention ends.
+                      ✓ <strong>Opt-In AI & Easy Teardown:</strong> Optionally
+                      enable free-tier cloud AI via AWS SSM (off by default) and
+                      clean up with a single CLI command after the event.
                     </li>
                   </ul>
                 </div>

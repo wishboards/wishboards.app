@@ -39,4 +39,40 @@ describe("DemoShowcase", () => {
       "https://conference.wishboards.app/account",
     );
   });
+
+  it("links to the opt-in AI comparison stack and live Storybook catalog", () => {
+    render(<DemoShowcase />);
+
+    const aiDemoLink = screen.getByText(/Launch AI Comparison Demo/i);
+    expect(aiDemoLink.closest("a")).toHaveAttribute(
+      "href",
+      "https://ai.wishboards.app",
+    );
+
+    const semanticSearchLink = screen.getByText(
+      /Semantic Search \(\/search\)/i,
+    );
+    expect(semanticSearchLink.closest("a")).toHaveAttribute(
+      "href",
+      "https://ai.wishboards.app/search",
+    );
+
+    const aiDocsLink = screen.getByText(/AI Docs/i);
+    expect(aiDocsLink.closest("a")).toHaveAttribute(
+      "href",
+      "https://wishboards.github.io/wishboard/ai-features/",
+    );
+
+    const storybookLink = screen.getByText(/Open Component Catalog/i);
+    expect(storybookLink.closest("a")).toHaveAttribute(
+      "href",
+      "https://wishboards.github.io/wishboard/storybook/",
+    );
+
+    const catalogGuideLink = screen.getByText(/Catalog Guide/i);
+    expect(catalogGuideLink.closest("a")).toHaveAttribute(
+      "href",
+      "https://wishboards.github.io/wishboard/component-catalog/",
+    );
+  });
 });

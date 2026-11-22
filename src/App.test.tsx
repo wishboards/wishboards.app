@@ -39,4 +39,30 @@ describe("App Component", () => {
     // Footer with Copyright
     expect(screen.getByText(/All Rights Reserved/i)).toBeInTheDocument();
   });
+
+  it("links to current Starlight documentation paths without legacy slugs", () => {
+    const { container } = render(<App />);
+    const hrefs = Array.from(container.querySelectorAll("a")).map((a) =>
+      a.getAttribute("href"),
+    );
+
+    expect(hrefs).not.toContain(
+      "https://wishboards.github.io/wishboard/kiosk/",
+    );
+    expect(hrefs).not.toContain(
+      "https://wishboards.github.io/wishboard/serverless/",
+    );
+    expect(hrefs).toContain(
+      "https://wishboards.github.io/wishboard/deployment-guide/",
+    );
+    expect(hrefs).toContain(
+      "https://wishboards.github.io/wishboard/serverless-deployment/",
+    );
+    expect(hrefs).toContain(
+      "https://wishboards.github.io/wishboard/ai-features/",
+    );
+    expect(hrefs).toContain(
+      "https://wishboards.github.io/wishboard/storybook/",
+    );
+  });
 });
